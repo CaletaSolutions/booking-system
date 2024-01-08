@@ -38,9 +38,8 @@ public class BookingController {
         return new ResponseEntity<>(createdBooking, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestBody Booking booking) {
-        booking.setId(id);
+    @PutMapping
+    public ResponseEntity<Booking> updateBooking(@RequestBody Booking booking) {
         Booking updatedBooking = bookingService.createOrUpdateBooking(booking);
         return new ResponseEntity<>(updatedBooking, HttpStatus.OK);
     }
@@ -48,6 +47,6 @@ public class BookingController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBooking(@PathVariable Long id) {
         bookingService.deleteBooking(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
